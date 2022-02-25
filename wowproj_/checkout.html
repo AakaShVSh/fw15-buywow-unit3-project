@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="\styles\checkout.css">
+    <link rel="stylesheet" href="./styles/checkout.css">
 </head>
 <body>
     <div class="container">
@@ -98,9 +98,18 @@
                     <p>INR ₹449.00</p>
                 </div>
 
-                <button class="cashback">You will get Rs.33 cashback after delivery.  T&C</button>
+                <button class="cashback" onclick="myFunction()">You will get Rs.33 cashback after delivery.  T&C</button>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+<script>
+    
+function myFunction() {
+  alert("Order placed Successfully");
+  window.location.href="home.html"
+}
+</script>
+
