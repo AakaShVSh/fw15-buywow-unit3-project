@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./styles/checkout.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" type="text/css" href="./styles/navbar.css">
 </head>
-<body>
+ <body>
+    <div id="main_navbar"></div>
     <div class="container">
         <div class="leftdiv"> 
             <div class="leftinner">
@@ -79,14 +82,14 @@
             <div class="rightinner">
                 <hr>
                 <div class="coupon">
-                    <input type="text,number" placeholder="Gift card or discount Code">
-                    <button>Apply</button>
+                    <input type="text,number" id = "inputpromo" placeholder="Gift card or discount Code">
+                    <button onclick="applypromo()" >Apply</button>
 
                 </div>
                 <hr>
                 <div class="subtot">
                     <p>Subtotal</p>
-                    <p>₹449.00</p>
+                    <p id = "totalprice"></p>
                 </div>
                 <div class="subtot">
                     <p>Shipping</p>
@@ -95,21 +98,56 @@
                 <hr>
                 <div class="subtot">
                     <p>Total</p>
-                    <p>INR ₹449.00</p>
+                    <p id = "totalprice2"></p>
                 </div>
 
-                <button class="cashback" onclick="myFunction()">You will get Rs.33 cashback after delivery.  T&C</button>
+                <button class="cashback"  onclick="send_home()">You will get Rs.33 cashback after delivery.  T&C</button>
             </div>
         </div>
     </div>
+    <div id="main_footer"></div>
 </body>
 </html>
+<script type="text/javascript" src="./scripts/navbar.js"></script>
+<script src="https://kit.fontawesome.com/b4ce217570.js" crossorigin="anonymous"></script>
+<script type="module">
 
-<script>
-    
-function myFunction() {
+import {navbar, footer} from "/components/index.js"
+	
+	 document.querySelector("#main_navbar").innerHTML = navbar();
+
+  let footer_div = document.querySelector("#main_footer");
+     footer_div.innerHTML = footer();
+   
+
+</script>
+<script type="text/javascript"> 
+
+let total = JSON.parse(localStorage.getItem("total"));
+let price_container = document.getElementById("totalprice")
+price_container.innerHTML = "INR ₹"+total+".00"
+let price_container2 = document.getElementById("totalprice2")
+price_container2.innerHTML = "INR ₹"+total+".00"
+
+
+let applypromo = () =>{
+    let price = document.getElementById("totalprice")
+    let price2 = document.getElementById("totalprice2")
+    let promo = document.getElementById("inputpromo")
+    if(promo.value=="masai30"){
+        let original = total;
+        total = Math.floor(total/100*30);
+        original = original-total;
+
+        price.innerHTML = "INR ₹"+original+".00";
+        price2.innerHTML = "INR ₹"+original+".00";
+
+    }
+}
+
+function send_home(){
   alert("Order placed Successfully");
   window.location.href="home.html"
-}
-</script>
+}</script>
+
 
